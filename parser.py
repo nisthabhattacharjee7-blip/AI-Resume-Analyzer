@@ -1,4 +1,4 @@
-from pyPDF2  import PDFReader
+from PyPDF2  import PDFReader
 def extract_text_from_pdf(pdf_file):
     text = ""
     reader = PDFReader(pdf_file)
