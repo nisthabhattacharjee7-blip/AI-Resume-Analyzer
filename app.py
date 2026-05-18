@@ -1,12 +1,31 @@
 import streamlit as st
 from parser import extract_text_from_pdf
+from skills import extract_skills
+from scorer import calculate_ats_score
 
 st.title("AI Resume Analyzer")
 uploaded_file = st.file_uploader("Upload resume PDF", type=["pdf"])
+job_description = st.text_area("Paste job description here")
 
 if uploaded_file is not None:
-    text = extract_text_from_pdf(uploaded_file)
+    extracted_text = extract_text_from_pdf(uploaded_file)
+    resume_skills = extract_skills(extracted_text)
+    jb_skills = extract_skills(job_description)
+    ats_score, matched_skills, missing_skills = calculate_ats_score(resume_skills, jb_skills)
 
-    st.success("Resume uploaded and text extracted successfully!")
-    st.subheader("Extracted Text")
-    st.write(text)
+    st.success("Resume analyzed successfully!")
+
+    st.subheader("ATS Score")
+    st.metric("Match Percentage", f"{ats_score:.2f}%")
+
+    st.subheader("Detected resume skills")
+    st.write(resume_skills)
+
+    st.subheader("Matched skills")
+    st.write(matched_skills)
+
+    st.subheader("Missing skills")
+    st.write(missing_skills)
+
+
+
