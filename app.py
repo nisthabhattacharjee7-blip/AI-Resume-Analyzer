@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from parser import extract_text_from_pdf
 from skills import extract_skills
 from scorer import calculate_ats_score
+
 # Page config
 st.set_page_config(
     page_title="AI Resume Analyzer", 
