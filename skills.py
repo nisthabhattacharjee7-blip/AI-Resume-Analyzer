@@ -1,34 +1,57 @@
-SKILLS_DB = [
-    "python",
-    "sql",
-    "pandas",
-    "numpy",
-    "streamlit",
-    "fastapi",
-    "docker",
-    "git",
-    "github",
-    "linux",
-    "machine learning",
-    "data analysis",
-    "api",
-    "flask",
-    "javascript",
-    "html",
-    "css",
-    "c++",
-    "java"
-]
+import re
+
+SKILL_CATEGORIES = {
+
+    "Programming Languages": [
+        "python",
+        "java",
+        "c++",
+        "javascript"
+    ],
+
+    "Web Technologies": [
+        "html",
+        "css",
+        "streamlit",
+        "fastapi",
+        "flask"
+    ],
+
+    "Databases": [
+        "sql",
+        "mysql",
+        "postgresql"
+    ],
+
+    "Tools & Platforms": [
+        "git",
+        "github",
+        "docker",
+        "linux"
+    ],
+
+    "Data & AI": [
+        "pandas",
+        "numpy",
+        "machine learning",
+        "data analysis"
+    ]
+}
+
 
 
 
 def extract_skills(text):
     text = text.lower()
-    detected_skills = []
+    detected_skills = {}
 
-    for skill in SKILLS_DB:
-        if skill in text:
-            detected_skills.append(skill)
-
-    return list(detected_skills)
-    
+    for category, skills in SKILL_CATEGORIES.items():
+        matched = []
+        for skill in skills:
+            pattern = r'\b' + re.escape(skill) + r'\b'
+            if re.search(pattern, text):
+                matched.append(skill)
+        if matched:
+            detected_skills[category] = list(set(matched))
+    return detected_skills             
+           
