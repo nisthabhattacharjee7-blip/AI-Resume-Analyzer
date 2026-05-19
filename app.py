@@ -43,6 +43,14 @@ if uploaded_file is not None:
     extracted_text = extract_text_from_pdf(uploaded_file)
     resume_skills = extract_skills(extracted_text)
     jb_skills = extract_skills(job_description)
+    resume_skills = []
+    for skills in resume_skills.values():
+        resume_skills.extend(skills)
+
+    jd_skills = []
+    for skills in jb_skills.values():
+        jd_skills.extend(skills)
+
     ats_score, matched_skills, missing_skills = calculate_ats_score(resume_skills, jb_skills)
     
     # success message 
@@ -57,10 +65,9 @@ if uploaded_file is not None:
     
     # detected skills
     st.subheader("Detected resume skills")
-    if resume_skills:
-        st.success(f"Detected {len(resume_skills)} skills in resume")
-    else:
-        st.warning("No skills detected in resume")
+    for category, skills in resume_skills.items():
+        st.markdown(f"###{category}")
+        st.success(", ".join(skills))
     
     # Matched skills 
     st.subheader("Matched skills")
