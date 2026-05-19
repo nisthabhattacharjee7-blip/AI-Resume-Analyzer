@@ -107,6 +107,22 @@ if uploaded_file is not None:
         "Matched Skills": pd.Series(matched_skills),
         "Missing Skills": pd.Series(missing_skills)
     })
-    st.dataframe(df)
+    st.dataframe(df)    
 
+    # Download report
+    report = f"""
+    ATS Score: {ats_score}%
+
+    Matched Skills:
+    {", ".join(matched_skills)}
+
+    Missing Skills:
+    {", ".join(missing_skills)}
+    """
+    st.download_button(
+        label="Download Analysis Report",
+        data=report,
+        file_name="ats_analysis_report.txt",
+        mime="text/plain"
+    )
 
