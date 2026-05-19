@@ -41,17 +41,17 @@ job_description = st.text_area("Paste job description here")
 # main logic
 if uploaded_file is not None:
     extracted_text = extract_text_from_pdf(uploaded_file)
-    resume_skills = extract_skills(extracted_text)
-    jb_skills = extract_skills(job_description)
+    resume_skill_categories = extract_skills(extracted_text)
+    jd_skill_categories = extract_skills(job_description)
     resume_skills = []
-    for skills in resume_skills.values():
+    for skills in resume_skill_categories.values():
         resume_skills.extend(skills)
 
     jd_skills = []
-    for skills in jb_skills.values():
+    for skills in jd_skill_categories.values():
         jd_skills.extend(skills)
 
-    ats_score, matched_skills, missing_skills = calculate_ats_score(resume_skills, jb_skills)
+    ats_score, matched_skills, missing_skills = calculate_ats_score(resume_skills, jd_skills)
     
     # success message 
     st.success("Resume analyzed successfully!")
@@ -65,8 +65,8 @@ if uploaded_file is not None:
     
     # detected skills
     st.subheader("Detected resume skills")
-    for category, skills in resume_skills.items():
-        st.markdown(f"###{category}")
+    for category, skills in resume_skill_categories.items():
+        st.markdown(f"### {category}")
         st.success(", ".join(skills))
     
     # Matched skills 
