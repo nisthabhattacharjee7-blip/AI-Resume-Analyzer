@@ -18,13 +18,17 @@ st.markdown("Analyze resume ATS compatibility with job descriptions.")
 # Sidebar
 st.sidebar.header("About")
 st.sidebar.info(
-        """
-    AI Resume Analyzer built using:
-    
-    - Python
-    - Streamlit
-    - PyPDF2
-    - NLP-style skill matching
+    """
+    This AI Resume Analyzer extracts skills from resumes
+    and compares them against job descriptions to evaluate
+    ATS compatibility.
+
+    Features:
+    - Resume PDF parsing
+    - Skill extraction
+    - ATS score calculation
+    - Missing skill detection
+    - Interactive dashboard
     """
 )
 # File upload and job description input
@@ -80,5 +84,5 @@ if uploaded_file is not None:
         "Missing Skills": pd.Series(missing_skills)
     })
     st.dataframe(df)
-    
+
 
