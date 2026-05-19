@@ -27,11 +27,11 @@ st.sidebar.info(
     - NLP-style skill matching
     """
 )
+# File upload and job description input
+uploaded_file = st.file_uploader(
+    "Upload resume PDF",
+    type=["pdf"])
 
-
-
-st.title("AI Resume Analyzer")
-uploaded_file = st.file_uploader("Upload resume PDF", type=["pdf"])
 job_description = st.text_area("Paste job description here")
 
 if uploaded_file is not None:
