@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
 from parser import extract_text_from_pdf
 from skills import extract_skills
 from scorer import calculate_ats_score
@@ -81,6 +82,23 @@ if uploaded_file is not None:
         st.warning(f"Missing {len(missing_skills)} skills in resume")
     else:
         st.success("All required skills are present in the resume")
+    
+    # pie chart 
+    st.subheader("Skill Match Analysis")
+    labels = ['Matched', 'Missing']
+    values = [
+        len(matched_skills),
+        len(missing_skills)
+    ]
+    fig, ax = plt.subplots()
+    ax.pie(
+        values, 
+        labels=labels, 
+        autopct='%1.1f%%', 
+        startangle=90, 
+        colors=['#4CAF50', '#F44336']
+    )
+    st.pyplot(fig)
 
     # Skill Dataframe
     st.subheader("Skill Match Table")
