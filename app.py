@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from parser import extract_text_from_pdf
 from skills import extract_skills
 from scorer import calculate_ats_score
+from recommendations import generate_recommendations    
 
 # Page config
 st.set_page_config(
@@ -39,7 +40,7 @@ uploaded_file = st.file_uploader(
 job_description = st.text_area("Paste job description here")
 
 # main logic
-if uploaded_file is not None:
+if uploaded_file is not None and job_description.strip() != "":  
     extracted_text = extract_text_from_pdf(uploaded_file)
     resume_skill_categories = extract_skills(extracted_text)
     jd_skill_categories = extract_skills(job_description)
@@ -52,7 +53,8 @@ if uploaded_file is not None:
         jd_skills.extend(skills)
 
     ats_score, matched_skills, missing_skills = calculate_ats_score(resume_skills, jd_skills)
-    
+    recommendations = generate_recommendations(missing_skills)
+
     # success message 
     st.success("Resume analyzed successfully!")
     
@@ -62,12 +64,19 @@ if uploaded_file is not None:
     st.metric(
         label = "Match Percentage",
         value = f"{ats_score:.2f}%")
-    
+    if ats_score >= 80:
+       st.success("Excellent ATS match!")
+
+    elif ats_score >= 60:
+       st.warning("Good match, but resume can be improved.")
+    else:
+       st.error("Low ATS match. Add more relevant skills.") 
+
     # detected skills
     st.subheader("Detected resume skills")
     for category, skills in resume_skill_categories.items():
         st.markdown(f"### {category}")
-        st.success(", ".join(skills))
+        st.code(", ".join(skills))
     
     # Matched skills 
     st.subheader("Matched skills")
@@ -82,7 +91,14 @@ if uploaded_file is not None:
         st.warning(f"Missing {len(missing_skills)} skills in resume")
     else:
         st.success("All required skills are present in the resume")
-    
+    # recommendations
+    st.subheader("Recommendations")
+    if recommendations:
+        for rec in recommendations:
+            st.info(rec)
+    else:
+        st.success("No recommendations - your resume is well optimized for this job description!")
+
     # pie chart 
     st.subheader("Skill Match Analysis")
     labels = ['Matched', 'Missing']
