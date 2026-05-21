@@ -102,7 +102,7 @@ AI-Resume-Analyzer/
 │
 ├── assets/
 │   ├── homepage.png
-│   ├── ats_result.png
+│   ├── ats_results.png
 │   ├── pie_chart.png
 │   └── recommendations.png
 │
