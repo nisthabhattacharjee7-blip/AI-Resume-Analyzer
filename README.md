@@ -44,13 +44,13 @@ The application extracts technical skills from uploaded PDF resumes, compares th
 
 ## Skill Match Visualization
 
-![Pie Chart](pie_chart.png)
+![Pie Chart](assets/pie_chart.png)
 
 ---
 
 ## Recommendations
 
-![Recommendations](recommendations.png)
+![Recommendations](assets/recommendations.png)
 
 ---
 
