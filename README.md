@@ -1,46 +1,89 @@
 # 📄 AI Resume Analyzer
 
-An AI-inspired Resume Analyzer built using Python and Streamlit that evaluates resume ATS compatibility against job descriptions.
+An AI-powered Resume Analyzer built using Python and Streamlit that evaluates ATS (Applicant Tracking System) compatibility between resumes and job descriptions.
 
-The application extracts skills from uploaded PDF resumes, compares them with job requirements, calculates ATS match scores, and identifies missing skills through an interactive dashboard.
+The application extracts technical skills from uploaded PDF resumes, compares them against job requirements, calculates ATS match scores, identifies missing skills, and provides improvement recommendations through an interactive analytics dashboard.
+
+---
+
+## Live Demo
+
+(https://ai-resume-analyzer-0526.streamlit.app/)
 
 ---
 
 # Features
 
-* Upload Resume PDF
-* Extract text from resumes
-* Detect technical skills automatically
-* Compare resume skills with job descriptions
-* Calculate ATS compatibility score
-* Identify matched and missing skills
-* Interactive Streamlit dashboard
-* Progress bar and analytics table
+- Upload Resume PDF
+- Extract text from resumes
+- Detect technical skills automatically
+- Categorized skill extraction
+- Compare resume skills with job descriptions
+- Calculate ATS compatibility score
+- Identify matched and missing skills
+- Generate resume improvement recommendations
+- Interactive analytics dashboard
+- Pie chart visualization
+- Downloadable ATS analysis report
+
+---
+
+# Screenshots
+
+## Homepage
+
+![Homepage](assets/homepage.png)
+
+---
+
+## ATS Analysis
+
+![ATS Result](assets/ats_result.png)
+
+---
+
+## Skill Match Visualization
+
+![Pie Chart](assets/pie_chart.png)
+
+---
+
+## Recommendations
+
+![Recommendations](assets/recommendations.png)
 
 ---
 
 # How It Works
 
+```text
 Upload Resume PDF
-↓
+        ↓
 Extract Resume Text
-↓
-Detect Skills
-↓
+        ↓
+Detect Skills Using Regex Matching
+        ↓
 Compare With Job Description
-↓
+        ↓
 Calculate ATS Score
-↓
-Display Results Dashboard
+        ↓
+Generate Recommendations
+        ↓
+Display Analytics Dashboard
+```
 
 ---
 
 # Tech Stack
 
-* Python
-* Streamlit
-* PyPDF2
-* Pandas
+- Python
+- Streamlit
+- PyPDF2
+- Pandas
+- Matplotlib
+- Regex (`re` module)
+
+---
 
 # Project Structure
 
@@ -51,37 +94,46 @@ AI-Resume-Analyzer/
 ├── parser.py
 ├── skills.py
 ├── scorer.py
+├── recommendations.py
 │
 ├── requirements.txt
 ├── README.md
 ├── .gitignore
 │
-├── sample_resumes/
-│   └── sample_resume.pdf
-│
 ├── assets/
+│   ├── homepage.png
+│   ├── ats_result.png
+│   ├── pie_chart.png
+│   └── recommendations.png
+│
+├── sample_resume/
 │
 └── venv/
 ```
 
+---
 
 # Modules
 
-## app.py
+## `app.py`
 
-Main Streamlit application UI and dashboard.
+Main Streamlit application containing the dashboard UI and workflow.
 
-## parser.py
+## `parser.py`
 
-Extracts text from uploaded PDF resumes.
+Extracts text from uploaded PDF resumes using PyPDF2.
 
-## skills.py
+## `skills.py`
 
-Detects technical skills from resume and job description text.
+Performs regex-based technical skill extraction and categorization.
 
-## scorer.py
+## `scorer.py`
 
 Calculates ATS score and identifies matched/missing skills.
+
+## `recommendations.py`
+
+Generates resume improvement suggestions based on missing skills.
 
 ---
 
@@ -125,10 +177,10 @@ streamlit run app.py
 
 # Sample ATS Analysis
 
-## Job Description Example
+## Example Job Description
 
 ```text
-Looking for a Python developer with SQL, Git, Linux, Docker, and FastAPI experience.
+Looking for a Python developer with SQL, Git, Linux, Docker, FastAPI, and Machine Learning experience.
 ```
 
 ---
@@ -137,29 +189,31 @@ Looking for a Python developer with SQL, Git, Linux, Docker, and FastAPI experie
 
 This project helped in learning:
 
-* PDF parsing
-* Streamlit UI development
-* Modular Python architecture
-* NLP-style keyword extraction
-* ATS scoring logic
-* Data presentation and dashboards
-* Git & GitHub workflow
+- PDF parsing
+- Streamlit dashboard development
+- Regex-based text processing
+- ATS scoring logic
+- Data visualization
+- Modular Python architecture
+- Recommendation systems
+- Git & GitHub workflow
+- Deployment-ready project structure
 
 ---
 
 # Future Improvements
 
-* Regex-based smarter skill extraction
-* Skill categorization
-* AI-powered resume suggestions
-* Resume improvement recommendations
-* Downloadable ATS reports
-* Database integration
-* LLM/API integration
+- NLP-based semantic skill extraction
+- AI-generated resume suggestions
+- Resume keyword optimization
+- Multiple resume comparison
+- Database integration
+- Authentication system
+- LLM/API integration
+- Resume scoring history tracking
 
 ---
 
 # Author
 
-Nistha Bhattacharjee
-
+**Nistha Bhattacharjee**
