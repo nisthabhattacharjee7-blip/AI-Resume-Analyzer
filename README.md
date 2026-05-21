@@ -38,7 +38,7 @@ The application extracts technical skills from uploaded PDF resumes, compares th
 
 ## ATS Analysis
 
-![ATS Result](assets/ats_result.png)
+![ATS Result](assets/ats_results.png)
 
 ---
 
